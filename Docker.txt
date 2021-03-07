@@ -1,0 +1,23 @@
+SET DOCKER_TLS_VERIFY=1
+SET DOCKER_HOST=tcp://192.168.99.100:2376
+SET DOCKER_CERT_PATH=C:\Users\chandra\.docker\machine\machines\default
+SET DOCKER_MACHINE_NAME=default
+SET COMPOSE_CONVERT_WINDOWS_PATHS=true
+
+docker exec -it <container-name> bash ==> Login to Container so we can browse its contents.
+docker build -t <tag-name>:<version> <image-name>
+docker run -p <localhost-port>:<container-port> -d --name <container-name> <image-name> 
+docker run -p <localhost-port>:<container-port> -it --name <container-name> <image-name> 
+docker stop <container-id>
+docker stop <container-name>
+docker start <container-id>
+docker start <container-name>
+docker start -ai <container-name>
+docker run -p 3001:80  -d --rm --name feedback-app feedback-node:volumes
+docker run -p 3001:80  -d -v feedback:/app/feedback --rm --name feedback-app feedback-node:volumes ==> Named volume is added using -v
+docker run -p 3001:80  -d -v feedback:/app/feedback -v /mnt/d/Documents/Technical/Docker/data-volumes-01-starting-setup:/app --rm --name feedback-app feedback-node:volumes 
+==> Named volume is added using -v. Added both "named volume" and "bind volume"
+
+docker run -p 3001:80  -d -v feedback:/app/feedback -v /mnt/d/Documents/Technical/Docker/data-volumes-01-starting-setup:/app  -v /app/node_modules --rm --name feedback-app feedback-node:volumes 
+==> added "anonymous volume to stop bind volume from overriding everything in /app"
+
